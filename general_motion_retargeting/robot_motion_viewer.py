@@ -124,10 +124,10 @@ class RobotMotionViewer:
         mj.mj_forward(self.model, self.data)
         
         if follow_camera:
-            self.viewer.cam.lookat = self.data.xpos[self.model.body(self.robot_base).id]
-            self.viewer.cam.distance = self.viewer_cam_distance
-            self.viewer.cam.elevation = -10  # 正面视角，轻微向下看
-            # self.viewer.cam.azimuth = 180    # 正面朝向机器人
+            self.viewer.cam.lookat = self.data.xpos[self.model.body(self.robot_base).id]    # 카메라가 바라보는 중심 좌표 (3차원 벡터)
+            self.viewer.cam.distance = self.viewer_cam_distance                             # 카메라와 lookat 사이의 거리
+            self.viewer.cam.elevation = -10  # 수직 회전 각도 (위/아래 방향)
+            self.viewer.cam.azimuth = 30    # 수평 회전 각도 (lookat을 중심으로 좌우 회전)
         
         if human_motion_data is not None:
             # Clean custom geometry
